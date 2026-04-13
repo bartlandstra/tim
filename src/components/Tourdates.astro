@@ -1,12 +1,5 @@
 ---
-const shows = [
-  { date: '2026-05-07', venue: 'TivoliVredenburg', city: 'Utrecht', act: 'Sven & Matthijs', status: 'tickets', url: 'https://www.tivolivredenburg.nl/agenda/94164511/sven-matthijs-07-05-2026' },
-  { date: '2026-05-10', venue: 'Paradiso', city: 'Amsterdam', act: 'Sven Hammond Big Band', status: 'tickets', url: 'https://www.paradiso.nl/programma/sven-hammond/118662' },
-  { date: '2026-06-07', venue: 'Theater Walhalla', city: 'Rotterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets', url: 'https://www.theaterwalhalla.nl/voorstelling/beatrice-van-der-poel-na-de-stilte/' },
-  { date: '2026-06-21', venue: 'Bimhuis', city: 'Amsterdam', act: 'Tim Eijmaal Trio', status: 'soon', url: '' },
-  { date: '2026-07-12', venue: 'North Sea Jazz Festival', city: 'Rotterdam', act: 'New Cool Collective ft. Tim Eijmaal', status: 'tickets', url: 'https://www.northseajazz.com/en/tickets' },
-  { date: '2026-09-05', venue: 'De Roode Bioscoop', city: 'Amsterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets', url: 'https://www.roodebioscoop.nl/beatrice-van-der-poel-na-de-stilte' },
-];
+import shows from '../data/tourdates.json';
 
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr + 'T12:00:00');
@@ -26,9 +19,21 @@ function formatDate(dateStr: string): string {
       Aankomende optredens en concerten.
     </p>
 
-    <div class="space-y-1">
+    <!-- No shows message (hidden by default, shown by JS if all dates passed) -->
+    <div id="no-shows" class="hidden text-center py-16">
+      <p class="text-lg" style="color: var(--color-text-muted);">
+        Er zijn momenteel geen geplande optredens.<br />
+        <a href="#contact" class="underline transition-colors duration-300 hover:text-[var(--color-accent)]" style="color: var(--color-accent);">Neem contact op</a> voor boekingen.
+      </p>
+    </div>
+
+    <div id="shows-list" class="space-y-1">
       {shows.map(show => (
-        <div class="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 p-5 border-b transition-colors duration-300 hover:bg-[var(--color-surface)]" style="border-color: var(--color-surface);">
+        <div
+          class="show-row group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 p-5 border-b transition-colors duration-300 hover:bg-[var(--color-surface)]"
+          style="border-color: var(--color-surface);"
+          data-date={show.date}
+        >
           <!-- Date -->
           <div class="sm:w-32 shrink-0">
             <span class="text-sm font-bold uppercase tracking-wide" style="color: var(--color-accent);">
@@ -47,9 +52,9 @@ function formatDate(dateStr: string): string {
             <div class="text-sm" style="color: var(--color-text-muted);">{show.act}</div>
           </div>
 
-          <!-- Status -->
+          <!-- Tickets -->
           <div class="sm:w-32 shrink-0 sm:text-right">
-            {show.status === 'tickets' && show.url ? (
+            {show.url ? (
               <a href={show.url} target="_blank" rel="noopener" class="inline-block text-xs font-medium uppercase tracking-wide px-4 py-2 transition-all duration-300 hover:scale-105" style="background: var(--color-accent); color: var(--color-bg);">
                 Tickets
               </a>
@@ -71,3 +76,33 @@ function formatDate(dateStr: string): string {
     </div>
   </div>
 </section>
+
+<script>
+  // Hide past tour dates (runs client-side so it works between builds)
+  function hidePastShows() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const rows = document.querySelectorAll('.show-row');
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+      const dateStr = (row as HTMLElement).dataset.date;
+      if (dateStr) {
+        const showDate = new Date(dateStr + 'T23:59:59');
+        if (showDate < today) {
+          (row as HTMLElement).style.display = 'none';
+        } else {
+          visibleCount++;
+        }
+      }
+    });
+
+    // Show "no shows" message if all dates have passed
+    if (visibleCount === 0) {
+      document.getElementById('no-shows')?.classList.remove('hidden');
+      document.getElementById('shows-list')?.classList.add('hidden');
+    }
+  }
+
+  hidePastShows();
+</script>
