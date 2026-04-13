@@ -1,15 +1,36 @@
 ---
-const credits = [
-  { artist: 'Sven Hammond', role: 'Gitarist (sinds 2006)', highlight: true },
+const bands = [
+  { artist: 'Sven Hammond', role: 'Vaste gitarist sinds 2006 · Huisband Matthijs Gaat Door', highlight: true },
+  { artist: 'New Cool Collective', role: 'Gitarist (vervanger Anton Goudsmit) · North Sea Jazz, Lowlands, Pinkpop', highlight: true },
   { artist: 'Abel', role: 'Gitarist', highlight: false },
-  { artist: 'New Cool Collective', role: 'Gitaar & tour', highlight: false },
-  { artist: 'Matt Simons', role: 'Tour-gitarist', highlight: false },
-  { artist: 'Ben Saunders', role: 'Session gitaar', highlight: false },
-  { artist: 'Beatrice van der Poel', role: 'Arrangement & productie', highlight: true },
-  { artist: 'Pete Philly', role: 'Session gitaar', highlight: false },
-  { artist: 'Thom Hoorweg', role: 'Gitaar (debut "Two Faced")', highlight: false },
-  { artist: 'Martijje', role: 'Gitaar (album "Zacht")', highlight: false },
-  { artist: 'Shary-An', role: 'Session gitaar', highlight: false },
+  { artist: 'Beatrice van der Poel', role: 'Arrangement, productie & theatertour "Na de Stilte"', highlight: true },
+];
+
+const sessions = [
+  { artist: 'Matt Simons', role: 'Tour-gitarist (internationale tour)' },
+  { artist: 'Ben Saunders', role: 'Session gitaar' },
+  { artist: 'Jim', role: 'Session gitaar' },
+  { artist: 'Maud', role: 'Session gitaar' },
+  { artist: 'Wim Soutaer', role: 'Session gitaar' },
+  { artist: 'AliB', role: 'Session gitaar' },
+  { artist: 'Bart Wirtz', role: 'Session gitaar' },
+  { artist: 'Wild Bill', role: 'Session gitaar' },
+  { artist: 'Kim Hoorweg', role: 'Session gitaar' },
+  { artist: 'Pete Philly', role: 'Session gitaar' },
+  { artist: 'Shary-An', role: 'Session gitaar' },
+  { artist: 'Thom Hoorweg', role: 'Gitaar (debut "Two Faced")' },
+  { artist: 'Martijje', role: 'Gitaar (album "Zacht")' },
+  { artist: 'Lange Frans & Baas B', role: 'Session gitaar (hit: "Het Land Van")' },
+];
+
+const albums = [
+  { title: 'Live @ Zwarte Ruiter', artist: 'Sven Hammond Soul', year: '2007' },
+  { title: 'Marmalade Sessions', artist: 'Sven Hammond Soul', year: '2009' },
+  { title: 'Spinnin Out', artist: 'Sven Hammond Soul', year: '2011' },
+  { title: 'Gotta Go', artist: 'Sven Hammond Soul', year: '2013' },
+  { title: 'Heelhuids', artist: 'Beatrice van der Poel', year: '2018' },
+  { title: 'Two Faced', artist: 'Thom Hoorweg', year: '' },
+  { title: 'Zacht', artist: 'Martijje', year: '' },
 ];
 ---
 
@@ -40,19 +61,43 @@ const credits = [
       </div>
     </div>
 
-    <!-- Credits Grid -->
-    <h3 class="text-sm uppercase tracking-widest mb-6" style="color: var(--color-accent);">Samenwerkingen & Credits</h3>
-    <div id="samenwerkingen" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {credits.map(credit => (
+    <!-- Bands & Vaste Projecten -->
+    <h3 class="text-sm uppercase tracking-widest mb-6" style="color: var(--color-accent);">Bands & Vaste Projecten</h3>
+    <div id="samenwerkingen" class="grid sm:grid-cols-2 gap-4 mb-16">
+      {bands.map(band => (
         <div
           class="card-hover p-5 border transition-colors duration-300"
-          style={`
-            background: var(--color-bg);
-            border-color: ${credit.highlight ? 'var(--color-accent-dim)' : 'var(--color-surface)'};
-          `}
+          style={`background: var(--color-bg); border-color: ${band.highlight ? 'var(--color-accent-dim)' : 'var(--color-surface)'};`}
         >
-          <div class="font-semibold text-white text-lg">{credit.artist}</div>
-          <div class="text-sm mt-1" style="color: var(--color-text-muted);">{credit.role}</div>
+          <div class="font-semibold text-white text-lg">{band.artist}</div>
+          <div class="text-sm mt-1" style="color: var(--color-text-muted);">{band.role}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Session Credits -->
+    <h3 class="text-sm uppercase tracking-widest mb-6" style="color: var(--color-accent);">Session & Studio Credits</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-16">
+      {sessions.map(s => (
+        <div class="card-hover p-4 border transition-colors duration-300" style="background: var(--color-bg); border-color: var(--color-surface);">
+          <div class="font-semibold text-white">{s.artist}</div>
+          <div class="text-sm mt-1" style="color: var(--color-text-muted);">{s.role}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Discografie -->
+    <h3 class="text-sm uppercase tracking-widest mb-6" style="color: var(--color-accent);">Discografie (selectie)</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      {albums.map(a => (
+        <div class="flex items-center gap-4 p-4 border transition-colors duration-300" style="background: var(--color-bg); border-color: var(--color-surface);">
+          <div class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full" style="background: var(--color-accent); color: var(--color-bg);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div>
+            <div class="font-semibold text-white text-sm">{a.title}</div>
+            <div class="text-xs" style="color: var(--color-text-muted);">{a.artist}{a.year ? ` (${a.year})` : ''}</div>
+          </div>
         </div>
       ))}
     </div>

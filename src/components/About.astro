@@ -28,30 +28,40 @@
         <p>
           Tim Eijmaal (1975) studeerde lichte muziek aan het Hilversums Conservatorium
           — nu Conservatorium van Amsterdam — bij docenten als Wim Overgaauw, Jesse van Ruller,
-          Maarten van der Grinten en Martijn van Iterson.
+          Maarten van der Grinten en Martijn van Iterson. In 1995 won hij de
+          <strong class="text-white">Krauthammer Jazzprijs</strong>.
         </p>
         <p>
           Sindsdien speelde en toerde hij met uiteenlopende artiesten en bands:
           <strong class="text-white">Abel</strong>, <strong class="text-white">Auratones</strong>,
-          <strong class="text-white">New Cool Collective</strong> en sinds 2006 als vaste gitarist
-          van <strong class="text-white">Sven Hammond</strong>. Met de Sven Hammond Big Band was
-          hij de huisband van het TV-programma <em>Matthijs Gaat Door</em>.
+          <strong class="text-white">New Cool Collective</strong> (als vervanger van Anton Goudsmit)
+          en sinds 2006 als vaste gitarist van <strong class="text-white">Sven Hammond</strong>.
+          Met de Sven Hammond Big Band was hij de huisband van
+          <em>Matthijs Gaat Door</em> (BNNVARA).
         </p>
         <p>
           Als session-gitarist is Tim te horen op opnames van
           <strong class="text-white">Ben Saunders</strong>,
           <strong class="text-white">Matt Simons</strong>,
-          <strong class="text-white">Pete Philly</strong>,
-          <strong class="text-white">Shary-An</strong> en vele anderen.
-          Daarnaast arrangeerde en produceerde hij albums voor singer-songwriter
-          Beatrice van der Poel.
+          <strong class="text-white">Lange Frans & Baas B</strong>,
+          <strong class="text-white">Jim</strong>, <strong class="text-white">Maud</strong>,
+          <strong class="text-white">Kim Hoorweg</strong> en vele anderen.
+          Daarnaast arrangeerde en produceerde hij voor singer-songwriter
+          Beatrice van der Poel en speelt hij met haar de theatertour <em>Na de Stilte</em>.
         </p>
+      </div>
+
+      <!-- Specialties -->
+      <div class="flex flex-wrap gap-2 mt-6">
+        {['Jazz', 'Blues', 'Soul', 'Pop', 'Rock', 'Funk', 'Latin', 'Fingerpicking', 'Slide guitar'].map(s => (
+          <span class="text-xs uppercase tracking-wide px-3 py-1 border" style="border-color: var(--color-accent-dim); color: var(--color-accent);">{s}</span>
+        ))}
       </div>
 
       <!-- Stats -->
       <div class="grid grid-cols-3 gap-6 mt-10 pt-10 border-t" style="border-color: var(--color-surface);">
         <div>
-          <div class="text-2xl md:text-3xl font-bold" style="color: var(--color-accent);">20+</div>
+          <div class="text-2xl md:text-3xl font-bold" style="color: var(--color-accent);">30+</div>
           <div class="text-xs uppercase tracking-wide mt-1" style="color: var(--color-text-muted);">Jaar ervaring</div>
         </div>
         <div>
@@ -61,6 +71,27 @@
         <div>
           <div class="text-2xl md:text-3xl font-bold" style="color: var(--color-accent);">TV</div>
           <div class="text-xs uppercase tracking-wide mt-1" style="color: var(--color-text-muted);">Matthijs Gaat Door</div>
+        </div>
+      </div>
+
+      <!-- Timeline highlights -->
+      <div class="mt-10 pt-10 border-t" style="border-color: var(--color-surface);">
+        <h3 class="text-sm uppercase tracking-widest mb-6" style="color: var(--color-accent);">Highlights</h3>
+        <div class="space-y-4">
+          {[
+            { year: '1995', text: 'Krauthammer Jazzprijs' },
+            { year: '2000', text: 'NCC — North Sea Jazz, Lowlands, Pinkpop, Rockpalast' },
+            { year: '2006', text: 'Vaste gitarist Sven Hammond Soul' },
+            { year: '2008', text: 'NCC — tournee Midden-Oosten (Damascus Jazz Fest)' },
+            { year: '2010', text: 'Internationale tour Matt Simons' },
+            { year: '2019', text: 'Huisband Matthijs Gaat Door (BNNVARA)' },
+            { year: '2023', text: 'Theatertour "Na de Stilte" met Beatrice van der Poel' },
+          ].map(item => (
+            <div class="flex gap-4 items-start">
+              <span class="shrink-0 text-sm font-bold" style="color: var(--color-accent); min-width: 3rem;">{item.year}</span>
+              <span class="text-sm" style="color: var(--color-text-muted);">{item.text}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
